@@ -41,7 +41,6 @@ A working example can be found here: [robingenz/capacitor-plugin-demo](https://g
 ## Usage
 
 ```typescript
-import { App } from '@capacitor/app';
 import { ScreenOrientation } from '@robingenz/capacitor-screen-orientation';
 
 // TODO
