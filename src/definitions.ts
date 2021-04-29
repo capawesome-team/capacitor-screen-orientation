@@ -1,19 +1,23 @@
 export interface ScreenOrientationPlugin {
   lock(options: LockOptions): Promise<void>;
   unlock(): Promise<void>;
+  getCurrentOrientation(): Promise<GetCurrentOrientationResult>;
 }
 
 export interface LockOptions {
-  orientation: LockTypes;
+  orientation: OrientationType;
 }
 
-export enum LockTypes {
+export interface GetCurrentOrientationResult {
+  orientation: OrientationType;
+}
+
+export enum OrientationType {
   ANY = 'any',
-  NATURAL = 'natural',
   LANDSCAPE = 'landscape',
+  LANDSCAPE_PRIMARY = 'landscape-primary',
+  LANDSCAPE_SECONDARY = 'landscape-secondary',
   PORTRAIT = 'portrait',
   PORTRAIT_PRIMARY = 'portrait-primary',
   PORTRAIT_SECONDARY = 'portrait-secondary',
-  LANDSCAPE_PRIMARY = 'landscape-primary',
-  LANDSCAPE_SECONDARY = 'landscape-secondary',
 }
