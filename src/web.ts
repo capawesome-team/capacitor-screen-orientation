@@ -1,7 +1,7 @@
 import { WebPlugin } from '@capacitor/core';
 
 import type {
-  GetCurrentOrientationResult,
+  GetCurrentTypeResult,
   LockOptions,
   ScreenOrientationPlugin,
 } from './definitions';
@@ -16,7 +16,7 @@ export class ScreenOrientationWeb
     if (!this.isSupported) {
       this.throwUnsupportedError();
     }
-    await screen.orientation.lock(options.orientation);
+    await screen.orientation.lock(options.type);
   }
 
   public async unlock(): Promise<void> {
@@ -26,24 +26,23 @@ export class ScreenOrientationWeb
     screen.orientation.unlock();
   }
 
-  public async getCurrentOrientation(): Promise<GetCurrentOrientationResult> {
+  public async getCurrentOrientationType(): Promise<GetCurrentTypeResult> {
     if (!this.isSupported) {
       this.throwUnsupportedError();
     }
-    let currentOrientation = OrientationType.LANDSCAPE_PRIMARY;
+    let currentType = OrientationType.LANDSCAPE_PRIMARY;
     switch (screen.orientation.type) {
       case 'landscape-secondary':
-        currentOrientation = OrientationType.LANDSCAPE_SECONDARY;
+        currentType = OrientationType.LANDSCAPE_SECONDARY;
         break;
       case 'portrait-primary':
-        currentOrientation = OrientationType.PORTRAIT_PRIMARY;
+        currentType = OrientationType.PORTRAIT_PRIMARY;
         break;
       case 'portrait-secondary':
-        currentOrientation = OrientationType.PORTRAIT_SECONDARY;
+        currentType = OrientationType.PORTRAIT_SECONDARY;
         break;
     }
-    const result = { orientation: currentOrientation };
-    return result;
+    return { type: currentType };
   }
 
   private throwUnsupportedError(): never {
