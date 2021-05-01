@@ -13,8 +13,8 @@ public class ScreenOrientation {
         this.bridge = bridge;
     }
 
-    public void lock(String type) {
-        switch (type) {
+    public void lock(String orientationType) {
+        switch (orientationType) {
             case ScreenOrientationType.LANDSCAPE:
                 bridge.getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
                 break;

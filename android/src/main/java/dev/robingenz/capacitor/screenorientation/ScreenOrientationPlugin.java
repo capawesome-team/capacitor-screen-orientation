@@ -18,8 +18,8 @@ public class ScreenOrientationPlugin extends Plugin {
 
     @PluginMethod
     public void lock(PluginCall call) {
-        String orientation = call.getString("type");
-        implementation.lock(orientation);
+        String orientationType = call.getString("type");
+        implementation.lock(orientationType);
         call.resolve();
     }
 
@@ -30,10 +30,10 @@ public class ScreenOrientationPlugin extends Plugin {
     }
 
     @PluginMethod
-    public void getCurrentOrientationType(PluginCall call) {
+    public void getCurrentOrientation(PluginCall call) {
         JSObject ret = new JSObject();
-        String orientation = implementation.getCurrentOrientationType();
-        ret.put("type", orientation);
+        String orientationType = implementation.getCurrentOrientationType();
+        ret.put("type", orientationType);
         call.resolve(ret);
     }
 }
