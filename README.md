@@ -49,10 +49,88 @@ import { ScreenOrientation } from '@robingenz/capacitor-screen-orientation';
 ## API
 
 <docgen-index>
+
+* [`lock(...)`](#lock)
+* [`unlock()`](#unlock)
+* [`getCurrentOrientationType()`](#getcurrentorientationtype)
+* [Interfaces](#interfaces)
+* [Enums](#enums)
+
 </docgen-index>
 
 <docgen-api>
 <!--Update the source file JSDoc comments and rerun docgen to update the docs below-->
+
+### lock(...)
+
+```typescript
+lock(options: LockOptions) => Promise<void>
+```
+
+Locks the device orientation.
+
+| Param         | Type                                                |
+| ------------- | --------------------------------------------------- |
+| **`options`** | <code><a href="#lockoptions">LockOptions</a></code> |
+
+--------------------
+
+
+### unlock()
+
+```typescript
+unlock() => Promise<void>
+```
+
+Unlocks the device orientation.
+
+--------------------
+
+
+### getCurrentOrientationType()
+
+```typescript
+getCurrentOrientationType() => Promise<OrientationTypeResult>
+```
+
+Gets the current device orientation type.
+
+**Returns:** <code>Promise&lt;<a href="#orientationtyperesult">OrientationTypeResult</a>&gt;</code>
+
+--------------------
+
+
+### Interfaces
+
+
+#### LockOptions
+
+| Prop       | Type                                                        | Description                |
+| ---------- | ----------------------------------------------------------- | -------------------------- |
+| **`type`** | <code><a href="#orientationtype">OrientationType</a></code> | The orientation lock type. |
+
+
+#### OrientationTypeResult
+
+| Prop       | Type                                                        | Description                |
+| ---------- | ----------------------------------------------------------- | -------------------------- |
+| **`type`** | <code><a href="#orientationtype">OrientationType</a></code> | The orientation lock type. |
+
+
+### Enums
+
+
+#### OrientationType
+
+| Members                   | Value                              | Description                                                         |
+| ------------------------- | ---------------------------------- | ------------------------------------------------------------------- |
+| **`LANDSCAPE`**           | <code>'landscape'</code>           | The orientation is either landscape-primary or landscape-secondary. |
+| **`LANDSCAPE_PRIMARY`**   | <code>'landscape-primary'</code>   | The orientation is in the primary landscape mode.                   |
+| **`LANDSCAPE_SECONDARY`** | <code>'landscape-secondary'</code> | The orientation is in the secondary landscape mode.                 |
+| **`PORTRAIT`**            | <code>'portrait'</code>            | The orientation is either portrait-primary or portrait-secondary.   |
+| **`PORTRAIT_PRIMARY`**    | <code>'portrait-primary'</code>    | The orientation is in the primary portrait mode.                    |
+| **`PORTRAIT_SECONDARY`**  | <code>'portrait-secondary'</code>  | The orientation is in the secondary portrait mode.                  |
+
 </docgen-api>
 
 ## Changelog

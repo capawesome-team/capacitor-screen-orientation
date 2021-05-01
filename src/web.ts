@@ -1,8 +1,8 @@
 import { WebPlugin } from '@capacitor/core';
 
 import type {
-  GetCurrentTypeResult,
   LockOptions,
+  OrientationTypeResult,
   ScreenOrientationPlugin,
 } from './definitions';
 import { OrientationType } from './definitions';
@@ -26,7 +26,7 @@ export class ScreenOrientationWeb
     screen.orientation.unlock();
   }
 
-  public async getCurrentOrientationType(): Promise<GetCurrentTypeResult> {
+  public async getCurrentOrientationType(): Promise<OrientationTypeResult> {
     if (!this.isSupported) {
       this.throwUnsupportedError();
     }
