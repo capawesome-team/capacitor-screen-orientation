@@ -2,7 +2,6 @@ package dev.robingenz.capacitor.screenorientation;
 
 import android.content.pm.ActivityInfo;
 import android.view.Surface;
-
 import com.getcapacitor.Bridge;
 
 public class ScreenOrientation {
