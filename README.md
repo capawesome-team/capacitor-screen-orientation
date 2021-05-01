@@ -43,16 +43,105 @@ A working example can be found here: [robingenz/capacitor-plugin-demo](https://g
 ```typescript
 import { ScreenOrientation } from '@robingenz/capacitor-screen-orientation';
 
-// TODO
+const lock = async () => {
+  await ScreenOrientation.lock({ type: OrientationType.LANDSCAPE });
+};
+
+const unlock = async () => {
+  await ScreenOrientation.unlock();
+};
+
+const getCurrentOrientation = async () => {
+  const result = await ScreenOrientation.getCurrentOrientation();
+  return result.type;
+};
 ```
 
 ## API
 
 <docgen-index>
+
+* [`lock(...)`](#lock)
+* [`unlock()`](#unlock)
+* [`getCurrentOrientation()`](#getcurrentorientation)
+* [Interfaces](#interfaces)
+* [Enums](#enums)
+
 </docgen-index>
 
 <docgen-api>
 <!--Update the source file JSDoc comments and rerun docgen to update the docs below-->
+
+### lock(...)
+
+```typescript
+lock(options: LockOptions) => Promise<void>
+```
+
+Locks the device orientation.
+
+| Param         | Type                                                |
+| ------------- | --------------------------------------------------- |
+| **`options`** | <code><a href="#lockoptions">LockOptions</a></code> |
+
+--------------------
+
+
+### unlock()
+
+```typescript
+unlock() => Promise<void>
+```
+
+Unlocks the device orientation.
+
+--------------------
+
+
+### getCurrentOrientation()
+
+```typescript
+getCurrentOrientation() => Promise<GetCurrentOrientationResult>
+```
+
+Gets the current device orientation type.
+
+**Returns:** <code>Promise&lt;<a href="#getcurrentorientationresult">GetCurrentOrientationResult</a>&gt;</code>
+
+--------------------
+
+
+### Interfaces
+
+
+#### LockOptions
+
+| Prop       | Type                                                        | Description                |
+| ---------- | ----------------------------------------------------------- | -------------------------- |
+| **`type`** | <code><a href="#orientationtype">OrientationType</a></code> | The orientation lock type. |
+
+
+#### GetCurrentOrientationResult
+
+| Prop       | Type                                                        | Description                |
+| ---------- | ----------------------------------------------------------- | -------------------------- |
+| **`type`** | <code><a href="#orientationtype">OrientationType</a></code> | The orientation lock type. |
+
+
+### Enums
+
+
+#### OrientationType
+
+| Members                   | Value                              | Description                                                         |
+| ------------------------- | ---------------------------------- | ------------------------------------------------------------------- |
+| **`LANDSCAPE`**           | <code>'landscape'</code>           | The orientation is either landscape-primary or landscape-secondary. |
+| **`LANDSCAPE_PRIMARY`**   | <code>'landscape-primary'</code>   | The orientation is in the primary landscape mode.                   |
+| **`LANDSCAPE_SECONDARY`** | <code>'landscape-secondary'</code> | The orientation is in the secondary landscape mode.                 |
+| **`PORTRAIT`**            | <code>'portrait'</code>            | The orientation is either portrait-primary or portrait-secondary.   |
+| **`PORTRAIT_PRIMARY`**    | <code>'portrait-primary'</code>    | The orientation is in the primary portrait mode.                    |
+| **`PORTRAIT_SECONDARY`**  | <code>'portrait-secondary'</code>  | The orientation is in the secondary portrait mode.                  |
+
 </docgen-api>
 
 ## Changelog
