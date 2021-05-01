@@ -1,8 +1,8 @@
 import { WebPlugin } from '@capacitor/core';
 
 import type {
+  GetCurrentOrientationResult,
   LockOptions,
-  OrientationTypeResult,
   ScreenOrientationPlugin,
 } from './definitions';
 import { OrientationType } from './definitions';
@@ -26,23 +26,22 @@ export class ScreenOrientationWeb
     screen.orientation.unlock();
   }
 
-  public async getCurrentOrientationType(): Promise<OrientationTypeResult> {
+  public async getCurrentOrientation(): Promise<GetCurrentOrientationResult> {
     if (!this.isSupported) {
       this.throwUnsupportedError();
     }
-    let currentType = OrientationType.LANDSCAPE_PRIMARY;
     switch (screen.orientation.type) {
+      case 'landscape-primary':
+        return { type: OrientationType.LANDSCAPE_PRIMARY };
       case 'landscape-secondary':
-        currentType = OrientationType.LANDSCAPE_SECONDARY;
-        break;
+        return { type: OrientationType.LANDSCAPE_SECONDARY };
       case 'portrait-primary':
-        currentType = OrientationType.PORTRAIT_PRIMARY;
-        break;
+        return { type: OrientationType.PORTRAIT_PRIMARY };
       case 'portrait-secondary':
-        currentType = OrientationType.PORTRAIT_SECONDARY;
-        break;
+        return { type: OrientationType.PORTRAIT_SECONDARY };
+      default:
+        throw new Error('The current orientation type could not be detected.');
     }
-    return { type: currentType };
   }
 
   private throwUnsupportedError(): never {

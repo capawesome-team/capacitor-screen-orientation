@@ -10,7 +10,7 @@ export interface ScreenOrientationPlugin {
   /**
    * Gets the current device orientation type.
    */
-  getCurrentOrientationType(): Promise<OrientationTypeResult>;
+  getCurrentOrientation(): Promise<GetCurrentOrientationResult>;
 }
 
 export interface LockOptions {
@@ -20,7 +20,7 @@ export interface LockOptions {
   type: OrientationType;
 }
 
-export interface OrientationTypeResult {
+export interface GetCurrentOrientationResult {
   /**
    * The orientation lock type.
    */

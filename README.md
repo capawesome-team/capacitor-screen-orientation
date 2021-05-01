@@ -43,7 +43,18 @@ A working example can be found here: [robingenz/capacitor-plugin-demo](https://g
 ```typescript
 import { ScreenOrientation } from '@robingenz/capacitor-screen-orientation';
 
-// TODO
+const lock = async () => {
+  await ScreenOrientation.lock({ type: OrientationType.LANDSCAPE });
+};
+
+const unlock = async () => {
+  await ScreenOrientation.unlock();
+};
+
+const getCurrentOrientation = async () => {
+  const result = await ScreenOrientation.getCurrentOrientation();
+  return result.type;
+};
 ```
 
 ## API
@@ -52,7 +63,7 @@ import { ScreenOrientation } from '@robingenz/capacitor-screen-orientation';
 
 * [`lock(...)`](#lock)
 * [`unlock()`](#unlock)
-* [`getCurrentOrientationType()`](#getcurrentorientationtype)
+* [`getCurrentOrientation()`](#getcurrentorientation)
 * [Interfaces](#interfaces)
 * [Enums](#enums)
 
@@ -87,15 +98,15 @@ Unlocks the device orientation.
 --------------------
 
 
-### getCurrentOrientationType()
+### getCurrentOrientation()
 
 ```typescript
-getCurrentOrientationType() => Promise<OrientationTypeResult>
+getCurrentOrientation() => Promise<GetCurrentOrientationResult>
 ```
 
 Gets the current device orientation type.
 
-**Returns:** <code>Promise&lt;<a href="#orientationtyperesult">OrientationTypeResult</a>&gt;</code>
+**Returns:** <code>Promise&lt;<a href="#getcurrentorientationresult">GetCurrentOrientationResult</a>&gt;</code>
 
 --------------------
 
@@ -110,7 +121,7 @@ Gets the current device orientation type.
 | **`type`** | <code><a href="#orientationtype">OrientationType</a></code> | The orientation lock type. |
 
 
-#### OrientationTypeResult
+#### GetCurrentOrientationResult
 
 | Prop       | Type                                                        | Description                |
 | ---------- | ----------------------------------------------------------- | -------------------------- |
