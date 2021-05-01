@@ -35,12 +35,10 @@ export class ScreenOrientationWeb
         return { type: OrientationType.LANDSCAPE_PRIMARY };
       case 'landscape-secondary':
         return { type: OrientationType.LANDSCAPE_SECONDARY };
-      case 'portrait-primary':
-        return { type: OrientationType.PORTRAIT_PRIMARY };
       case 'portrait-secondary':
         return { type: OrientationType.PORTRAIT_SECONDARY };
       default:
-        throw new Error('The current orientation type could not be detected.');
+        return { type: OrientationType.PORTRAIT_PRIMARY };
     }
   }
 
