@@ -7,20 +7,25 @@ import Foundation
         return ScreenOrientation.supportedInterfaceOrientations
     }
     
-    @objc public func lock(_ orientationType: String) {
-        DispatchQueue.main.async {
-            let orientationValue = self.convertOrientationTypeToValue(orientationType)
-            let orientationMask = self.convertOrientationTypeToMask(orientationType)
+    @objc public func lock(_ orientationType: String, completion: @escaping () -> Void) {
+        DispatchQueue.main.async { [weak self] in
+            guard let strongSelf = self else {
+                return
+            }
+            let orientationValue = strongSelf.convertOrientationTypeToValue(orientationType)
+            let orientationMask = strongSelf.convertOrientationTypeToMask(orientationType)
             UIDevice.current.setValue(orientationValue, forKey: "orientation")
             UINavigationController.attemptRotationToDeviceOrientation()
             ScreenOrientation.supportedInterfaceOrientations = orientationMask
+            completion()
         }
     }
     
-    @objc public func unlock() {
+    @objc public func unlock(completion: @escaping () -> Void) {
         DispatchQueue.main.async {
             UIDevice.current.setValue(0, forKey: "orientation")
             ScreenOrientation.supportedInterfaceOrientations = UIInterfaceOrientationMask.all
+            completion()
         }
     }
     
