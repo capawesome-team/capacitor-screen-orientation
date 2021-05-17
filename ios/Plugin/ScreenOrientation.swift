@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 @objc public class ScreenOrientation: NSObject {
     static var supportedInterfaceOrientations = UIInterfaceOrientationMask.all
