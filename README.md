@@ -76,11 +76,11 @@ const getCurrentOrientation = async () => {
 
 <docgen-index>
 
-- [`lock(...)`](#lock)
-- [`unlock()`](#unlock)
-- [`getCurrentOrientation()`](#getcurrentorientation)
-- [Interfaces](#interfaces)
-- [Enums](#enums)
+* [`lock(...)`](#lock)
+* [`unlock()`](#unlock)
+* [`getCurrentOrientation()`](#getcurrentorientation)
+* [Interfaces](#interfaces)
+* [Enums](#enums)
 
 </docgen-index>
 
@@ -99,7 +99,8 @@ Locks the device orientation.
 | ------------- | --------------------------------------------------- |
 | **`options`** | <code><a href="#lockoptions">LockOptions</a></code> |
 
----
+--------------------
+
 
 ### unlock()
 
@@ -109,7 +110,8 @@ unlock() => Promise<void>
 
 Unlocks the device orientation.
 
----
+--------------------
+
 
 ### getCurrentOrientation()
 
@@ -121,9 +123,11 @@ Gets the current device orientation type.
 
 **Returns:** <code>Promise&lt;<a href="#getcurrentorientationresult">GetCurrentOrientationResult</a>&gt;</code>
 
----
+--------------------
+
 
 ### Interfaces
+
 
 #### LockOptions
 
@@ -131,13 +135,16 @@ Gets the current device orientation type.
 | ---------- | ----------------------------------------------------------- | -------------------------- |
 | **`type`** | <code><a href="#orientationtype">OrientationType</a></code> | The orientation lock type. |
 
+
 #### GetCurrentOrientationResult
 
 | Prop       | Type                                                        | Description                |
 | ---------- | ----------------------------------------------------------- | -------------------------- |
 | **`type`** | <code><a href="#orientationtype">OrientationType</a></code> | The orientation lock type. |
 
+
 ### Enums
+
 
 #### OrientationType
 
