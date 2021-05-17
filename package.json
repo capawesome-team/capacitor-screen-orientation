@@ -1,6 +1,6 @@
 {
   "name": "@robingenz/capacitor-screen-orientation",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Capacitor plugin to lock/unlock the screen orientation.",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
