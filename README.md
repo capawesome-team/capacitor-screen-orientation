@@ -34,12 +34,17 @@ npx cap sync
 
 On iOS you must add the following to your app's `AppDelegate.swift`:
 
-```swift
-var orientationLock = UIInterfaceOrientationMask.all
+```diff-swift
++ import RobingenzCapacitorScreenOrientation
 
-func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
-  return self.orientationLock
-}
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
+
++ func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
++   return ScreenOrientation.getSupportedInterfaceOrientations()
++ }
+
+...
 ```
 
 ## Configuration
