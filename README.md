@@ -30,6 +30,21 @@ npm install @robingenz/capacitor-screen-orientation
 npx cap sync
 ```
 
+### iOS
+
+On iOS you must add the following to your app's `AppDelegate.swift`:
+
+```diff
++ import RobingenzCapacitorScreenOrientation
+
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
+
++ func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
++   return ScreenOrientation.getSupportedInterfaceOrientations()
++ }
+```
+
 ## Configuration
 
 No configuration required for this plugin.
