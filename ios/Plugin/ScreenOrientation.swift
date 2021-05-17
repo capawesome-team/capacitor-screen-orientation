@@ -1,17 +1,26 @@
 import Foundation
 
 @objc public class ScreenOrientation: NSObject {
+    static var supportedInterfaceOrientations = UIInterfaceOrientationMask.all
+    
+    @objc public static func getSupportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return ScreenOrientation.supportedInterfaceOrientations
+    }
+    
     @objc public func lock(_ orientationType: String) {
         DispatchQueue.main.async {
             let orientationValue = self.convertOrientationTypeToValue(orientationType)
+            let orientationMask = self.convertOrientationTypeToMask(orientationType)
             UIDevice.current.setValue(orientationValue, forKey: "orientation")
             UINavigationController.attemptRotationToDeviceOrientation()
+            ScreenOrientation.supportedInterfaceOrientations = orientationMask
         }
     }
     
     @objc public func unlock() {
         DispatchQueue.main.async {
             UIDevice.current.setValue(0, forKey: "orientation")
+            ScreenOrientation.supportedInterfaceOrientations = UIInterfaceOrientationMask.all
         }
     }
     
@@ -19,6 +28,25 @@ import Foundation
         let orientationValue = UIDevice.current.orientation.rawValue
         let orientationType = self.convertOrientationValueToType(orientationValue)
         return orientationType
+    }
+    
+    @objc private func convertOrientationTypeToMask(_ orientationType: String) -> UIInterfaceOrientationMask {
+        switch orientationType {
+        case "landscape":
+            return UIInterfaceOrientationMask.landscapeRight
+        case "landscape-primary":
+            return UIInterfaceOrientationMask.landscapeLeft
+        case "landscape-secondary":
+            return UIInterfaceOrientationMask.landscapeRight
+        case "potrait":
+            return UIInterfaceOrientationMask.portrait
+        case "potrait-primary":
+            return UIInterfaceOrientationMask.portrait
+        case "potrait-secondary":
+            return UIInterfaceOrientationMask.portraitUpsideDown
+        default:
+            return UIInterfaceOrientationMask.all
+        }
     }
     
     @objc private func convertOrientationTypeToValue(_ orientationType: String) -> Int {
