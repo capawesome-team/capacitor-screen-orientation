@@ -2,11 +2,11 @@ import Foundation
 
 @objc public class ScreenOrientation: NSObject {
     static var supportedInterfaceOrientations = UIInterfaceOrientationMask.all
-    
+
     @objc public static func getSupportedInterfaceOrientations() -> UIInterfaceOrientationMask {
         return ScreenOrientation.supportedInterfaceOrientations
     }
-    
+
     @objc public func lock(_ orientationType: String, completion: @escaping () -> Void) {
         DispatchQueue.main.async { [weak self] in
             guard let strongSelf = self else {
@@ -20,7 +20,7 @@ import Foundation
             completion()
         }
     }
-    
+
     @objc public func unlock(completion: @escaping () -> Void) {
         DispatchQueue.main.async {
             UIDevice.current.setValue(0, forKey: "orientation")
@@ -28,13 +28,13 @@ import Foundation
             completion()
         }
     }
-    
+
     @objc public func getCurrentOrientationType() -> String {
         let orientationValue = UIDevice.current.orientation.rawValue
         let orientationType = self.convertOrientationValueToType(orientationValue)
         return orientationType
     }
-    
+
     @objc private func convertOrientationTypeToMask(_ orientationType: String) -> UIInterfaceOrientationMask {
         switch orientationType {
         case "landscape":
@@ -53,7 +53,7 @@ import Foundation
             return UIInterfaceOrientationMask.all
         }
     }
-    
+
     @objc private func convertOrientationTypeToValue(_ orientationType: String) -> Int {
         switch orientationType {
         case "landscape":
@@ -72,7 +72,7 @@ import Foundation
             return UIInterfaceOrientation.unknown.rawValue
         }
     }
-    
+
     @objc private func convertOrientationValueToType(_ orientationValue: Int) -> String {
         switch orientationValue {
         case UIInterfaceOrientation.landscapeLeft.rawValue:
