@@ -43,11 +43,11 @@ import UIKit
             return UIInterfaceOrientationMask.landscapeLeft
         case "landscape-secondary":
             return UIInterfaceOrientationMask.landscapeRight
-        case "potrait":
+        case "portrait":
             return UIInterfaceOrientationMask.portrait
-        case "potrait-primary":
+        case "portrait-primary":
             return UIInterfaceOrientationMask.portrait
-        case "potrait-secondary":
+        case "portrait-secondary":
             return UIInterfaceOrientationMask.portraitUpsideDown
         default:
             return UIInterfaceOrientationMask.all
@@ -61,11 +61,11 @@ import UIKit
         case UIInterfaceOrientation.landscapeRight.rawValue:
             return "landscape-secondary"
         case UIInterfaceOrientation.portrait.rawValue:
-            return "potrait-primary"
+            return "portrait-primary"
         case UIInterfaceOrientation.portraitUpsideDown.rawValue:
-            return "potrait-secondary"
+            return "portrait-secondary"
         default:
-            return "potrait-primary"
+            return "portrait-primary"
         }
     }
 }
