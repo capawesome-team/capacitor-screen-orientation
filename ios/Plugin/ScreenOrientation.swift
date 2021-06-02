@@ -13,9 +13,8 @@ import UIKit
             guard let strongSelf = self else {
                 return
             }
-            let orientationValue = strongSelf.convertOrientationTypeToValue(orientationType)
             let orientationMask = strongSelf.convertOrientationTypeToMask(orientationType)
-            UIDevice.current.setValue(orientationValue, forKey: "orientation")
+            UIDevice.current.setValue(orientationMask.rawValue, forKey: "orientation")
             UINavigationController.attemptRotationToDeviceOrientation()
             ScreenOrientation.supportedInterfaceOrientations = orientationMask
             completion()
@@ -52,25 +51,6 @@ import UIKit
             return UIInterfaceOrientationMask.portraitUpsideDown
         default:
             return UIInterfaceOrientationMask.all
-        }
-    }
-
-    @objc private func convertOrientationTypeToValue(_ orientationType: String) -> Int {
-        switch orientationType {
-        case "landscape":
-            return UIInterfaceOrientation.landscapeRight.rawValue
-        case "landscape-primary":
-            return UIInterfaceOrientation.landscapeLeft.rawValue
-        case "landscape-secondary":
-            return UIInterfaceOrientation.landscapeRight.rawValue
-        case "potrait":
-            return UIInterfaceOrientation.portrait.rawValue
-        case "potrait-primary":
-            return UIInterfaceOrientation.portrait.rawValue
-        case "potrait-secondary":
-            return UIInterfaceOrientation.portraitUpsideDown.rawValue
-        default:
-            return UIInterfaceOrientation.unknown.rawValue
         }
     }
 
