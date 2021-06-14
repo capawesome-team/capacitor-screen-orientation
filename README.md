@@ -56,7 +56,7 @@ A working example can be found here: [robingenz/capacitor-plugin-demo](https://g
 ## Usage
 
 ```typescript
-import { ScreenOrientation } from '@robingenz/capacitor-screen-orientation';
+import { ScreenOrientation, OrientationType } from '@robingenz/capacitor-screen-orientation';
 
 const lock = async () => {
   await ScreenOrientation.lock({ type: OrientationType.LANDSCAPE });
