@@ -14,16 +14,18 @@ import UIKit
                 return
             }
             let orientationMask = strongSelf.convertOrientationTypeToMask(orientationType)
-            UIDevice.current.setValue(orientationMask.rawValue, forKey: "orientation")
-            UINavigationController.attemptRotationToDeviceOrientation()
+            let orientationValue = strongSelf.convertOrientationTypeToValue(orientationType)
+            UIDevice.current.setValue(orientationValue, forKey: "orientation")
             ScreenOrientation.supportedInterfaceOrientations = orientationMask
+            UINavigationController.attemptRotationToDeviceOrientation()
             completion()
         }
     }
 
     @objc public func unlock(completion: @escaping () -> Void) {
         DispatchQueue.main.async {
-            UIDevice.current.setValue(0, forKey: "orientation")
+            let orientationValue = UIInterfaceOrientation.unknown.rawValue
+            UIDevice.current.setValue(orientationValue, forKey: "orientation")
             ScreenOrientation.supportedInterfaceOrientations = UIInterfaceOrientationMask.all
             completion()
         }
@@ -51,6 +53,25 @@ import UIKit
             return UIInterfaceOrientationMask.portraitUpsideDown
         default:
             return UIInterfaceOrientationMask.all
+        }
+    }
+    
+    @objc private func convertOrientationTypeToValue(_ orientationType: String) -> Int {
+        switch orientationType {
+        case "landscape":
+            return UIInterfaceOrientation.landscapeRight.rawValue
+        case "landscape-primary":
+            return UIInterfaceOrientation.landscapeLeft.rawValue
+        case "landscape-secondary":
+            return UIInterfaceOrientation.landscapeRight.rawValue
+        case "portrait":
+            return UIInterfaceOrientation.portrait.rawValue
+        case "portrait-primary":
+            return UIInterfaceOrientation.portrait.rawValue
+        case "portrait-secondary":
+            return UIInterfaceOrientation.portraitUpsideDown.rawValue
+        default:
+            return UIInterfaceOrientation.unknown.rawValue
         }
     }
 
