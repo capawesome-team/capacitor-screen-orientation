@@ -3,6 +3,7 @@ import { WebPlugin } from '@capacitor/core';
 import type {
   GetCurrentOrientationResult,
   LockOptions,
+  ScreenOrientationChange,
   ScreenOrientationPlugin,
 } from './definitions';
 import { OrientationType } from './definitions';
@@ -11,6 +12,16 @@ export class ScreenOrientationWeb
   extends WebPlugin
   implements ScreenOrientationPlugin {
   private readonly isSupported = 'orientation' in screen;
+
+  constructor() {
+    super();
+    if (this.isSupported) {
+      screen.orientation.addEventListener(
+        'change',
+        this.handleOrientationChange,
+      );
+    }
+  }
 
   public async lock(options: LockOptions): Promise<void> {
     if (!this.isSupported) {
@@ -41,6 +52,14 @@ export class ScreenOrientationWeb
         return { type: OrientationType.PORTRAIT_PRIMARY };
     }
   }
+
+  private handleOrientationChange = async () => {
+    const result = await this.getCurrentOrientation();
+    const changeEvent: ScreenOrientationChange = {
+      type: result.type,
+    };
+    this.notifyListeners('screenOrientationChange', changeEvent);
+  };
 
   private throwUnsupportedError(): never {
     throw this.unavailable(

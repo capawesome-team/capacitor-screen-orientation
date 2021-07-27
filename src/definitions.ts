@@ -1,3 +1,5 @@
+import type { PluginListenerHandle } from '@capacitor/core';
+
 export interface ScreenOrientationPlugin {
   /**
    * Locks the device orientation.
@@ -11,6 +13,17 @@ export interface ScreenOrientationPlugin {
    * Gets the current device orientation type.
    */
   getCurrentOrientation(): Promise<GetCurrentOrientationResult>;
+  /**
+   * Listen for screen orientation changes.
+   */
+  addListener(
+    eventName: 'screenOrientationChange',
+    listenerFunc: ScreenOrientationChangeListener,
+  ): Promise<PluginListenerHandle> & PluginListenerHandle;
+  /**
+   * Remove all listeners for this plugin.
+   */
+  removeAllListeners(): Promise<void>;
 }
 
 export interface LockOptions {
@@ -22,7 +35,7 @@ export interface LockOptions {
 
 export interface GetCurrentOrientationResult {
   /**
-   * The orientation lock type.
+   * The current orientation type.
    */
   type: OrientationType;
 }
@@ -52,4 +65,18 @@ export enum OrientationType {
    * The orientation is in the secondary portrait mode.
    */
   PORTRAIT_SECONDARY = 'portrait-secondary',
+}
+
+/**
+ * Callback to receive the screen orientation change notifications.
+ */
+export type ScreenOrientationChangeListener = (
+  change: ScreenOrientationChange,
+) => void;
+
+export interface ScreenOrientationChange {
+  /**
+   * The current orientation type.
+   */
+  type: OrientationType;
 }
