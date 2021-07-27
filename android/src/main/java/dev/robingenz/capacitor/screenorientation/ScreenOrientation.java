@@ -1,15 +1,47 @@
 package dev.robingenz.capacitor.screenorientation;
 
 import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.view.Surface;
+import androidx.annotation.Nullable;
 import com.getcapacitor.Bridge;
 
 public class ScreenOrientation {
+
+    interface ScreenOrientationChangeListener {
+        void onScreenOrientationChanged();
+    }
+
+    @Nullable
+    private ScreenOrientationChangeListener orientationChangeListener;
+
+    @Nullable
+    private int lastOrientationConfiguration;
 
     private Bridge bridge;
 
     ScreenOrientation(Bridge bridge) {
         this.bridge = bridge;
+    }
+
+    public void handleOnConfigurationChanged(Configuration newConfig) {
+        if (newConfig.orientation == lastOrientationConfiguration) {
+            return;
+        }
+        this.lastOrientationConfiguration = newConfig.orientation;
+        if (this.orientationChangeListener == null) {
+            return;
+        }
+        this.orientationChangeListener.onScreenOrientationChanged();
+    }
+
+    public void setOrientationChangeListener(@Nullable ScreenOrientationChangeListener listener) {
+        this.orientationChangeListener = listener;
+    }
+
+    @Nullable
+    public ScreenOrientationChangeListener getOrientationChangeListener() {
+        return orientationChangeListener;
     }
 
     public void lock(String orientationType) {
