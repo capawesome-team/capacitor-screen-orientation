@@ -79,7 +79,10 @@ const getCurrentOrientation = async () => {
 * [`lock(...)`](#lock)
 * [`unlock()`](#unlock)
 * [`getCurrentOrientation()`](#getcurrentorientation)
+* [`addListener('screenOrientationChange', ...)`](#addlistenerscreenorientationchange-)
+* [`removeAllListeners()`](#removealllisteners)
 * [Interfaces](#interfaces)
+* [Type Aliases](#type-aliases)
 * [Enums](#enums)
 
 </docgen-index>
@@ -126,6 +129,35 @@ Gets the current device orientation type.
 --------------------
 
 
+### addListener('screenOrientationChange', ...)
+
+```typescript
+addListener(eventName: 'screenOrientationChange', listenerFunc: ScreenOrientationChangeListener) => Promise<PluginListenerHandle> & PluginListenerHandle
+```
+
+Listen for screen orientation changes.
+
+| Param              | Type                                                                                        |
+| ------------------ | ------------------------------------------------------------------------------------------- |
+| **`eventName`**    | <code>'screenOrientationChange'</code>                                                      |
+| **`listenerFunc`** | <code><a href="#screenorientationchangelistener">ScreenOrientationChangeListener</a></code> |
+
+**Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
+
+--------------------
+
+
+### removeAllListeners()
+
+```typescript
+removeAllListeners() => Promise<void>
+```
+
+Remove all listeners for this plugin.
+
+--------------------
+
+
 ### Interfaces
 
 
@@ -138,9 +170,33 @@ Gets the current device orientation type.
 
 #### GetCurrentOrientationResult
 
-| Prop       | Type                                                        | Description                |
-| ---------- | ----------------------------------------------------------- | -------------------------- |
-| **`type`** | <code><a href="#orientationtype">OrientationType</a></code> | The orientation lock type. |
+| Prop       | Type                                                        | Description                   |
+| ---------- | ----------------------------------------------------------- | ----------------------------- |
+| **`type`** | <code><a href="#orientationtype">OrientationType</a></code> | The current orientation type. |
+
+
+#### PluginListenerHandle
+
+| Prop         | Type                                      |
+| ------------ | ----------------------------------------- |
+| **`remove`** | <code>() =&gt; Promise&lt;void&gt;</code> |
+
+
+#### ScreenOrientationChange
+
+| Prop       | Type                                                        | Description                   |
+| ---------- | ----------------------------------------------------------- | ----------------------------- |
+| **`type`** | <code><a href="#orientationtype">OrientationType</a></code> | The current orientation type. |
+
+
+### Type Aliases
+
+
+#### ScreenOrientationChangeListener
+
+Callback to receive the screen orientation change notifications.
+
+<code>(change: <a href="#screenorientationchange">ScreenOrientationChange</a>): void</code>
 
 
 ### Enums

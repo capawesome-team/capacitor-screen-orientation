@@ -55,7 +55,7 @@ import UIKit
             return UIInterfaceOrientationMask.all
         }
     }
-    
+
     @objc private func convertOrientationTypeToValue(_ orientationType: String) -> Int {
         switch orientationType {
         case "landscape":
