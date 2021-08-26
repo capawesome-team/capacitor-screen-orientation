@@ -7,7 +7,16 @@ import Capacitor
  */
 @objc(ScreenOrientationPlugin)
 public class ScreenOrientationPlugin: CAPPlugin {
+    public let screenOrientationChangeEvent = "screenOrientationChange"
     private let implementation = ScreenOrientation()
+
+    override public func load() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.handleOrientationChange), name: UIDevice.orientationDidChangeNotification, object: nil)
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 
     @objc func lock(_ call: CAPPluginCall) {
         let orientationType = call.getString("type") ?? ""
@@ -25,6 +34,13 @@ public class ScreenOrientationPlugin: CAPPlugin {
     @objc func getCurrentOrientation(_ call: CAPPluginCall) {
         let orientationType = implementation.getCurrentOrientationType()
         call.resolve([
+            "type": orientationType
+        ])
+    }
+
+    @objc func handleOrientationChange() {
+        let orientationType = implementation.getCurrentOrientationType()
+        notifyListeners(screenOrientationChangeEvent, data: [
             "type": orientationType
         ])
     }
