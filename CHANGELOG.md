@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/robingenz/capacitor-screen-orientation/compare/v1.0.2...v1.1.0) (2021-08-26)
+
+
+### Features
+
+* add `screenOrientationChange` listener ([#8](https://github.com/robingenz/capacitor-screen-orientation/issues/8)) ([9bb5c2e](https://github.com/robingenz/capacitor-screen-orientation/commit/9bb5c2ef89cabfcdebc33a2d6a4d8f606179fe51))
+
 ### [1.0.2](https://github.com/robingenz/capacitor-screen-orientation/compare/v1.0.1...v1.0.2) (2021-07-16)
 
 
