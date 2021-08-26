@@ -40,7 +40,7 @@ public class ScreenOrientationPlugin: CAPPlugin {
 
     @objc func handleOrientationChange() {
         let orientationType = implementation.getCurrentOrientationType()
-        self.notifyListeners(screenOrientationChangeEvent, data: [
+        notifyListeners(screenOrientationChangeEvent, data: [
             "type": orientationType
         ])
     }
