@@ -37,6 +37,10 @@ import UIKit
         return orientationType
     }
 
+    @objc public func isCurrentOrientationValid() -> Bool {
+        return UIDevice.current.orientation.isValidInterfaceOrientation
+    }
+
     @objc private func convertOrientationTypeToMask(_ orientationType: String) -> UIInterfaceOrientationMask {
         switch orientationType {
         case "landscape":
@@ -86,7 +90,8 @@ import UIKit
         case UIInterfaceOrientation.portraitUpsideDown.rawValue:
             return "portrait-secondary"
         default:
-            return "portrait-primary"
+            let isPortrait = UIApplication.shared.statusBarOrientation.isPortrait
+            return isPortrait ? "portrait-primary" : "landscape-primary"
         }
     }
 }
