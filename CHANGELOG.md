@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/robingenz/capacitor-screen-orientation/compare/v1.1.0...v1.1.1) (2021-12-14)
+
+
+### Bug Fixes
+
+* **ios:** handle `faceUp` and `faceDown` orientation ([#10](https://github.com/robingenz/capacitor-screen-orientation/issues/10)) ([25d58a4](https://github.com/robingenz/capacitor-screen-orientation/commit/25d58a4da012c6faf8d19b1d7221cd9d4ac22f23))
+
 ## [1.1.0](https://github.com/robingenz/capacitor-screen-orientation/compare/v1.0.2...v1.1.0) (2021-08-26)
 
 
