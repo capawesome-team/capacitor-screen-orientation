@@ -6,7 +6,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/maintenance/yes/2021?style=flat-square" />
+  <img src="https://img.shields.io/maintenance/yes/2022?style=flat-square" />
   <a href="https://github.com/robingenz/capacitor-screen-orientation/actions?query=workflow%3A%22CI%22"><img src="https://img.shields.io/github/workflow/status/robingenz/capacitor-screen-orientation/CI/main?style=flat-square" /></a>
   <a href="https://www.npmjs.com/package/@robingenz/capacitor-screen-orientation"><img src="https://img.shields.io/npm/l/@robingenz/capacitor-screen-orientation?style=flat-square" /></a>
 <br>
