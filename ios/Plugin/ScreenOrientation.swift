@@ -31,10 +31,12 @@ import UIKit
         }
     }
 
-    @objc public func getCurrentOrientationType() -> String {
-        let orientationValue = UIDevice.current.orientation.rawValue
-        let orientationType = self.convertOrientationValueToType(orientationValue)
-        return orientationType
+    @objc public func getCurrentOrientationType(completion: @escaping (String) -> Void) {
+        DispatchQueue.main.async {
+            let orientationValue = UIDevice.current.orientation.rawValue
+            let orientationType = self.convertOrientationValueToType(orientationValue)
+            completion(orientationType)
+        }
     }
 
     @objc public func isCurrentOrientationValid() -> Bool {

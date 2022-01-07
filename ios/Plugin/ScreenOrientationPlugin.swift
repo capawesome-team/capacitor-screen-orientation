@@ -32,10 +32,11 @@ public class ScreenOrientationPlugin: CAPPlugin {
     }
 
     @objc func getCurrentOrientation(_ call: CAPPluginCall) {
-        let orientationType = implementation.getCurrentOrientationType()
-        call.resolve([
-            "type": orientationType
-        ])
+        implementation.getCurrentOrientationType(completion: { orientationType in
+            call.resolve([
+                "type": orientationType
+            ])
+        })
     }
 
     @objc func handleOrientationChange() {
@@ -43,9 +44,10 @@ public class ScreenOrientationPlugin: CAPPlugin {
         guard isValid else {
             return
         }
-        let orientationType = implementation.getCurrentOrientationType()
-        notifyListeners(screenOrientationChangeEvent, data: [
-            "type": orientationType
-        ])
+        implementation.getCurrentOrientationType(completion: { orientationType in
+            self.notifyListeners(self.screenOrientationChangeEvent, data: [
+                "type": orientationType
+            ])
+        })
     }
 }
