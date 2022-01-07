@@ -40,8 +40,7 @@ import UIKit
     }
 
     @objc public func isCurrentOrientationValid() -> Bool {
-        let isValid = UIDevice.current.orientation.isValidInterfaceOrientation
-        return isValid
+        return UIDevice.current.orientation.isValidInterfaceOrientation
     }
 
     @objc private func convertOrientationTypeToMask(_ orientationType: String) -> UIInterfaceOrientationMask {
