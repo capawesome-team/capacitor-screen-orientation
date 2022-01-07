@@ -40,12 +40,12 @@ public class ScreenOrientationPlugin: CAPPlugin {
     }
 
     @objc func handleOrientationChange() {
-        implementation.isCurrentOrientationValid(completion: { isValid in
-            guard isValid else {
-                return
-            }
-            let orientationType = implementation.getCurrentOrientationType()
-            notifyListeners(screenOrientationChangeEvent, data: [
+        let isValid = implementation.isCurrentOrientationValid()
+        guard isValid else {
+            return
+        }
+        implementation.getCurrentOrientationType(completion: { orientationType in
+            self.notifyListeners(self.screenOrientationChangeEvent, data: [
                 "type": orientationType
             ])
         })

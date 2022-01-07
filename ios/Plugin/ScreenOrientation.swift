@@ -39,11 +39,9 @@ import UIKit
         }
     }
 
-    @objc public func isCurrentOrientationValid(completion: @escaping (Bool) -> Void) {
-        DispatchQueue.main.async {
-            let isValid = UIDevice.current.orientation.isValidInterfaceOrientation
-            completion(isValid)
-        }
+    @objc public func isCurrentOrientationValid() -> Bool {
+        let isValid = UIDevice.current.orientation.isValidInterfaceOrientation
+        return isValid
     }
 
     @objc private func convertOrientationTypeToMask(_ orientationType: String) -> UIInterfaceOrientationMask {
