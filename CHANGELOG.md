@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.2](https://github.com/robingenz/capacitor-screen-orientation/compare/v1.1.1...v1.1.2) (2022-01-07)
+
+
+### Bug Fixes
+
+* **ios:** `UI API called on a background thread` ([#12](https://github.com/robingenz/capacitor-screen-orientation/issues/12)) ([e70232d](https://github.com/robingenz/capacitor-screen-orientation/commit/e70232d32bd786dd9459c4261bc9a81ad6961cfb))
+
 ### [1.1.1](https://github.com/robingenz/capacitor-screen-orientation/compare/v1.1.0...v1.1.1) (2021-12-14)
 
 
