@@ -13,20 +13,21 @@ import UIKit
             guard let strongSelf = self else {
                 return
             }
-            let orientationMask = strongSelf.convertOrientationTypeToMask(orientationType)
-            let orientationValue = strongSelf.convertOrientationTypeToValue(orientationType)
-            UIDevice.current.setValue(orientationValue, forKey: "orientation")
-            ScreenOrientation.supportedInterfaceOrientations = orientationMask
+            let currentOrientationValue = UIDevice.current.orientation.rawValue
+            let nextOrientationMask = strongSelf.convertOrientationTypeToMask(orientationType)
+            let nextOrientationValue = strongSelf.convertOrientationTypeToValue(orientationType)
+            UIDevice.current.setValue(nextOrientationValue, forKey: "orientation")
+            ScreenOrientation.supportedInterfaceOrientations = nextOrientationMask
             UINavigationController.attemptRotationToDeviceOrientation()
+            UIDevice.current.setValue(currentOrientationValue, forKey: "orientation")
             completion()
         }
     }
 
     @objc public func unlock(completion: @escaping () -> Void) {
         DispatchQueue.main.async {
-            let orientationValue = UIInterfaceOrientation.unknown.rawValue
-            UIDevice.current.setValue(orientationValue, forKey: "orientation")
             ScreenOrientation.supportedInterfaceOrientations = UIInterfaceOrientationMask.all
+            UINavigationController.attemptRotationToDeviceOrientation()
             completion()
         }
     }
