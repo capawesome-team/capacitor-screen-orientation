@@ -79,7 +79,7 @@ const getCurrentOrientation = async () => {
 * [`lock(...)`](#lock)
 * [`unlock()`](#unlock)
 * [`getCurrentOrientation()`](#getcurrentorientation)
-* [`addListener('screenOrientationChange', ...)`](#addlistenerscreenorientationchange-)
+* [`addListener('screenOrientationChange', ...)`](#addlistenerscreenorientationchange)
 * [`removeAllListeners()`](#removealllisteners)
 * [Interfaces](#interfaces)
 * [Type Aliases](#type-aliases)
