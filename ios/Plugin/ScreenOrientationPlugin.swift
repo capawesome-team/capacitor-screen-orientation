@@ -8,10 +8,10 @@ import Capacitor
 @objc(ScreenOrientationPlugin)
 public class ScreenOrientationPlugin: CAPPlugin {
     public let screenOrientationChangeEvent = "screenOrientationChange"
-    private let implementation = ScreenOrientation()
+    private var implementation: ScreenOrientation?
 
     override public func load() {
-        NotificationCenter.default.addObserver(self, selector: #selector(self.handleOrientationChange), name: UIDevice.orientationDidChangeNotification, object: nil)
+        self.implementation = ScreenOrientation(plugin: self)
     }
 
     deinit {
@@ -20,34 +20,28 @@ public class ScreenOrientationPlugin: CAPPlugin {
 
     @objc func lock(_ call: CAPPluginCall) {
         let orientationType = call.getString("type") ?? ""
-        implementation.lock(orientationType, completion: {
+        implementation?.lock(orientationType, completion: {
             call.resolve()
         })
     }
 
     @objc func unlock(_ call: CAPPluginCall) {
-        implementation.unlock(completion: {
+        implementation?.unlock(completion: {
             call.resolve()
         })
     }
 
     @objc func getCurrentOrientation(_ call: CAPPluginCall) {
-        implementation.getCurrentOrientationType(completion: { orientationType in
+        implementation?.getCurrentOrientationType(completion: { orientationType in
             call.resolve([
                 "type": orientationType
             ])
         })
     }
 
-    @objc func handleOrientationChange() {
-        let isValid = implementation.isCurrentOrientationValid()
-        guard isValid else {
-            return
-        }
-        implementation.getCurrentOrientationType(completion: { orientationType in
-            self.notifyListeners(self.screenOrientationChangeEvent, data: [
-                "type": orientationType
-            ])
-        })
+    @objc func notifyOrientationChangeListeners(_ orientationType: String) {
+        self.notifyListeners(self.screenOrientationChangeEvent, data: [
+            "type": orientationType
+        ])
     }
 }

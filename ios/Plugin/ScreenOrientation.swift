@@ -3,6 +3,14 @@ import UIKit
 
 @objc public class ScreenOrientation: NSObject {
     static var supportedInterfaceOrientations = UIInterfaceOrientationMask.all
+    private let plugin: ScreenOrientationPlugin
+    private var currentOrientationType: String?
+
+    init(plugin: ScreenOrientationPlugin) {
+        self.plugin = plugin
+        super.init()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.handleOrientationChange), name: UIDevice.orientationDidChangeNotification, object: nil)
+    }
 
     @objc public static func getSupportedInterfaceOrientations() -> UIInterfaceOrientationMask {
         return ScreenOrientation.supportedInterfaceOrientations
@@ -20,6 +28,7 @@ import UIKit
             ScreenOrientation.supportedInterfaceOrientations = nextOrientationMask
             UINavigationController.attemptRotationToDeviceOrientation()
             UIDevice.current.setValue(currentOrientationValue, forKey: "orientation")
+            strongSelf.plugin.notifyOrientationChangeListeners(orientationType)
             completion()
         }
     }
@@ -28,6 +37,10 @@ import UIKit
         DispatchQueue.main.async {
             ScreenOrientation.supportedInterfaceOrientations = UIInterfaceOrientationMask.all
             UINavigationController.attemptRotationToDeviceOrientation()
+            guard let orientationType = self.currentOrientationType else {
+                return
+            }
+            self.plugin.notifyOrientationChangeListeners(orientationType)
             completion()
         }
     }
@@ -42,6 +55,20 @@ import UIKit
 
     @objc public func isCurrentOrientationValid() -> Bool {
         return UIDevice.current.orientation.isValidInterfaceOrientation
+    }
+
+    @objc private func handleOrientationChange() {
+        let isValid = self.isCurrentOrientationValid()
+        guard isValid else {
+            return
+        }
+        self.getCurrentOrientationType(completion: { orientationType in
+            self.currentOrientationType = orientationType
+            guard ScreenOrientation.supportedInterfaceOrientations == UIInterfaceOrientationMask.all else {
+                return
+            }
+            self.plugin.notifyOrientationChangeListeners(orientationType)
+        })
     }
 
     @objc private func convertOrientationTypeToMask(_ orientationType: String) -> UIInterfaceOrientationMask {
