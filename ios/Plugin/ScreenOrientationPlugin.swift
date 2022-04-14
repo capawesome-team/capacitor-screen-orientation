@@ -32,7 +32,7 @@ public class ScreenOrientationPlugin: CAPPlugin {
     }
 
     @objc func getCurrentOrientation(_ call: CAPPluginCall) {
-        implementation?.getCurrentOrientationType(completion: { orientationType in
+        implementation?.getCachedCurrentOrientationType(completion: { orientationType in
             call.resolve([
                 "type": orientationType
             ])
