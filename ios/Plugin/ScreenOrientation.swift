@@ -29,7 +29,7 @@ import UIKit
             ScreenOrientation.supportedInterfaceOrientations = nextOrientationMask
             UINavigationController.attemptRotationToDeviceOrientation()
             UIDevice.current.setValue(currentOrientationValue, forKey: "orientation")
-            strongSelf.plugin.notifyOrientationChangeListeners(orientationType)
+            strongSelf.notifyOrientationChangeListeners(orientationType)
             completion()
         }
     }
