@@ -5,6 +5,7 @@ import UIKit
     static var supportedInterfaceOrientations = UIInterfaceOrientationMask.all
     private let plugin: ScreenOrientationPlugin
     private var currentOrientationType: String?
+    private var lastOrientationType: String?
 
     init(plugin: ScreenOrientationPlugin) {
         self.plugin = plugin
@@ -28,7 +29,7 @@ import UIKit
             ScreenOrientation.supportedInterfaceOrientations = nextOrientationMask
             UINavigationController.attemptRotationToDeviceOrientation()
             UIDevice.current.setValue(currentOrientationValue, forKey: "orientation")
-            strongSelf.plugin.notifyOrientationChangeListeners(orientationType)
+            strongSelf.notifyOrientationChangeListeners(orientationType)
             completion()
         }
     }
@@ -37,15 +38,23 @@ import UIKit
         DispatchQueue.main.async {
             ScreenOrientation.supportedInterfaceOrientations = UIInterfaceOrientationMask.all
             UINavigationController.attemptRotationToDeviceOrientation()
-            guard let orientationType = self.currentOrientationType else {
+            guard let orientationType = self.lastOrientationType else {
                 return
             }
-            self.plugin.notifyOrientationChangeListeners(orientationType)
+            self.notifyOrientationChangeListeners(orientationType)
             completion()
         }
     }
 
-    @objc public func getCurrentOrientationType(completion: @escaping (String) -> Void) {
+    @objc public func getCachedCurrentOrientationType(completion: @escaping (String) -> Void) {
+        guard let cachedOrientationType = self.currentOrientationType else {
+            self.getUncachedCurrentOrientationType(completion: completion)
+            return
+        }
+        completion(cachedOrientationType)
+    }
+
+    @objc private func getUncachedCurrentOrientationType(completion: @escaping (String) -> Void) {
         DispatchQueue.main.async {
             let orientationValue = UIDevice.current.orientation.rawValue
             let orientationType = self.convertOrientationValueToType(orientationValue)
@@ -53,7 +62,7 @@ import UIKit
         }
     }
 
-    @objc public func isCurrentOrientationValid() -> Bool {
+    @objc private func isCurrentOrientationValid() -> Bool {
         return UIDevice.current.orientation.isValidInterfaceOrientation
     }
 
@@ -62,13 +71,18 @@ import UIKit
         guard isValid else {
             return
         }
-        self.getCurrentOrientationType(completion: { orientationType in
-            self.currentOrientationType = orientationType
+        self.getUncachedCurrentOrientationType(completion: { orientationType in
+            self.lastOrientationType = orientationType
             guard ScreenOrientation.supportedInterfaceOrientations == UIInterfaceOrientationMask.all else {
                 return
             }
-            self.plugin.notifyOrientationChangeListeners(orientationType)
+            self.notifyOrientationChangeListeners(orientationType)
         })
+    }
+
+    @objc private func notifyOrientationChangeListeners(_ orientationType: String) {
+        self.currentOrientationType = orientationType
+        self.plugin.notifyOrientationChangeListeners(orientationType)
     }
 
     @objc private func convertOrientationTypeToMask(_ orientationType: String) -> UIInterfaceOrientationMask {
