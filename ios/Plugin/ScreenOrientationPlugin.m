@@ -7,4 +7,5 @@ CAP_PLUGIN(ScreenOrientationPlugin, "ScreenOrientation",
            CAP_PLUGIN_METHOD(lock, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(unlock, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(getCurrentOrientation, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(removeAllListeners, CAPPluginReturnNone);
 )
