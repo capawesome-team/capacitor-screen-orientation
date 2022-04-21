@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.6](https://github.com/robingenz/capacitor-screen-orientation/compare/v1.1.5...v1.1.6) (2022-04-21)
+
+
+### Bug Fixes
+
+* **ios:** `removeAllListeners` method not found ([7c20eb8](https://github.com/robingenz/capacitor-screen-orientation/commit/7c20eb82f6b4ecd4600ea94d209a11650b925edb))
+
 ### [1.1.5](https://github.com/robingenz/capacitor-screen-orientation/compare/v1.1.4...v1.1.5) (2022-04-13)
 
 
