@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.7](https://github.com/robingenz/capacitor-screen-orientation/compare/v1.1.6...v1.1.7) (2022-04-21)
+
+
+### Bug Fixes
+
+* **ios:** return correct current orientation type while locked ([#19](https://github.com/robingenz/capacitor-screen-orientation/issues/19)) ([9b6053a](https://github.com/robingenz/capacitor-screen-orientation/commit/9b6053ae9402db591c58f1bcc19358a2ac69d90f))
+
 ### [1.1.6](https://github.com/robingenz/capacitor-screen-orientation/compare/v1.1.5...v1.1.6) (2022-04-21)
 
 
