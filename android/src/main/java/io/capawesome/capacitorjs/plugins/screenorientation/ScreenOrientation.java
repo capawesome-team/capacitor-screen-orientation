@@ -1,4 +1,4 @@
-package dev.robingenz.capacitor.screenorientation;
+package io.capawesome.capacitorjs.plugins.screenorientation;
 
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;

@@ -1,20 +1,18 @@
 <p align="center"><br><img src="https://user-images.githubusercontent.com/236501/85893648-1c92e880-b7a8-11ea-926d-95355b8175c7.png" width="128" height="128" /></p>
 <h3 align="center">Screen Orientation</h3>
-<p align="center"><strong><code>@robingenz/capacitor-screen-orientation</code></strong></p>
+<p align="center"><strong><code>@capawesome/capacitor-screen-orientation</code></strong></p>
 <p align="center">
   Capacitor plugin to lock/unlock the screen orientation. 
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/maintenance/yes/2022?style=flat-square" />
-  <a href="https://github.com/robingenz/capacitor-screen-orientation/actions?query=workflow%3A%22CI%22"><img src="https://img.shields.io/github/workflow/status/robingenz/capacitor-screen-orientation/CI/main?style=flat-square" /></a>
-  <a href="https://www.npmjs.com/package/@robingenz/capacitor-screen-orientation"><img src="https://img.shields.io/npm/l/@robingenz/capacitor-screen-orientation?style=flat-square" /></a>
+  <a href="https://github.com/capawesome-team/capacitor-screen-orientation/actions?query=workflow%3A%22CI%22"><img src="https://img.shields.io/github/workflow/status/capawesome-team/capacitor-screen-orientation/CI/main?style=flat-square" /></a>
+  <a href="https://www.npmjs.com/package/@capawesome/capacitor-screen-orientation"><img src="https://img.shields.io/npm/l/@capawesome/capacitor-screen-orientation?style=flat-square" /></a>
 <br>
-  <a href="https://www.npmjs.com/package/@robingenz/capacitor-screen-orientation"><img src="https://img.shields.io/npm/dw/@robingenz/capacitor-screen-orientation?style=flat-square" /></a>
-  <a href="https://www.npmjs.com/package/@robingenz/capacitor-screen-orientation"><img src="https://img.shields.io/npm/v/@robingenz/capacitor-screen-orientation?style=flat-square" /></a>
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-<a href="#contributors-"><img src="https://img.shields.io/badge/all%20contributors-1-orange?style=flat-square" /></a>
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
+  <a href="https://www.npmjs.com/package/@capawesome/capacitor-screen-orientation"><img src="https://img.shields.io/npm/dw/@capawesome/capacitor-screen-orientation?style=flat-square" /></a>
+  <a href="https://www.npmjs.com/package/@capawesome/capacitor-screen-orientation"><img src="https://img.shields.io/npm/v/@capawesome/capacitor-screen-orientation?style=flat-square" /></a>
+  <a href="https://github.com/capawesome-team"><img src="https://img.shields.io/badge/part%20of-capawesome-%234f46e5?style=flat-square" /></a>
 </p>
 
 ## Maintainers
@@ -23,10 +21,18 @@
 | ---------- | ----------------------------------------- | --------------------------------------------- |
 | Robin Genz | [robingenz](https://github.com/robingenz) | [@robin_genz](https://twitter.com/robin_genz) |
 
+## Sponsors
+
+This is an MIT-licensed open source project. 
+It can grow thanks to the support by these awesome people. 
+If you'd like to join them, please read more [here](https://github.com/sponsors/capawesome-team).  
+
+<!-- sponsors --><!-- sponsors -->
+
 ## Installation
 
 ```bash
-npm install @robingenz/capacitor-screen-orientation
+npm install @capawesome/capacitor-screen-orientation
 npx cap sync
 ```
 
@@ -35,7 +41,7 @@ npx cap sync
 On iOS you must add the following to your app's `AppDelegate.swift`:
 
 ```diff
-+ import RobingenzCapacitorScreenOrientation
++ import CapawesomeCapacitorScreenOrientation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -56,7 +62,7 @@ A working example can be found here: [robingenz/capacitor-plugin-demo](https://g
 ## Usage
 
 ```typescript
-import { ScreenOrientation, OrientationType } from '@robingenz/capacitor-screen-orientation';
+import { ScreenOrientation, OrientationType } from '@capawesome/capacitor-screen-orientation';
 
 const lock = async () => {
   await ScreenOrientation.lock({ type: OrientationType.LANDSCAPE });
@@ -217,8 +223,8 @@ Callback to receive the screen orientation change notifications.
 
 ## Changelog
 
-See [CHANGELOG.md](https://github.com/robingenz/capacitor-screen-orientation/blob/master/CHANGELOG.md).
+See [CHANGELOG.md](https://github.com/capawesome-team/capacitor-screen-orientation/blob/master/CHANGELOG.md).
 
 ## License
 
-See [LICENSE](https://github.com/robingenz/capacitor-screen-orientation/blob/master/LICENSE).
+See [LICENSE](https://github.com/capawesome-team/capacitor-screen-orientation/blob/master/LICENSE).
