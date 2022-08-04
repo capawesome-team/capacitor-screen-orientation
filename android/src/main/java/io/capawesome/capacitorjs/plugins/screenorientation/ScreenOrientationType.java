@@ -1,4 +1,4 @@
-package io.capawesome.capacitor.screenorientation;
+package io.capawesome.capacitorjs.plugins.screenorientation;
 
 public class ScreenOrientationType {
 
