@@ -12,9 +12,7 @@
 <br>
   <a href="https://www.npmjs.com/package/@capawesome/capacitor-screen-orientation"><img src="https://img.shields.io/npm/dw/@capawesome/capacitor-screen-orientation?style=flat-square" /></a>
   <a href="https://www.npmjs.com/package/@capawesome/capacitor-screen-orientation"><img src="https://img.shields.io/npm/v/@capawesome/capacitor-screen-orientation?style=flat-square" /></a>
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-<a href="#contributors-"><img src="https://img.shields.io/badge/all%20contributors-1-orange?style=flat-square" /></a>
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
+  <a href="https://github.com/capawesome-team"><img src="https://img.shields.io/badge/part%20of-capawesome-%234f46e5?style=flat-square" /></a>
 </p>
 
 ## Maintainers
