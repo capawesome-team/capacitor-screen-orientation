@@ -10,7 +10,8 @@ import { OrientationType } from './definitions';
 
 export class ScreenOrientationWeb
   extends WebPlugin
-  implements ScreenOrientationPlugin {
+  implements ScreenOrientationPlugin
+{
   private readonly isSupported = 'orientation' in screen;
 
   constructor() {
