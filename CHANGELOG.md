@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/capawesome-team/capacitor-screen-orientation/compare/v1.1.7...v2.0.0) (2022-08-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* This plugin was renamed to `@capawesome/capacitor-screen-orientation`. Please install the new npm package and run `npx cap sync`.
+* This plugin now only supports Capacitor 4.
+
+### Features
+
+* update to Capacitor 4 ([#21](https://github.com/capawesome-team/capacitor-screen-orientation/issues/21)) ([adadb99](https://github.com/capawesome-team/capacitor-screen-orientation/commit/adadb9995827251466fbe98d8449dc29f603f983))
+
+
+* rename to `@capawesome/capacitor-screen-orientation` ([#22](https://github.com/capawesome-team/capacitor-screen-orientation/issues/22)) ([f846c40](https://github.com/capawesome-team/capacitor-screen-orientation/commit/f846c4067d5b31721989887952b3bbec931ed3f3))
+
 ### [1.1.7](https://github.com/robingenz/capacitor-screen-orientation/compare/v1.1.6...v1.1.7) (2022-04-21)
 
 
