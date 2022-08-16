@@ -134,7 +134,16 @@ import UIKit
         case UIInterfaceOrientation.portraitUpsideDown.rawValue:
             return "portrait-secondary"
         default:
-            let isPortrait = UIApplication.shared.statusBarOrientation.isPortrait
+            var isPortrait = false
+            if #available(iOS 13.0, *) {
+              isPortrait = UIApplication.shared.windows
+                .first?
+                .windowScene?
+                .interfaceOrientation
+                .isPortrait ?? false
+            } else {
+              isPortrait = UIApplication.shared.statusBarOrientation.isPortrait
+            }
             return isPortrait ? "portrait-primary" : "landscape-primary"
         }
     }
