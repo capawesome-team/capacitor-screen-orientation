@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/capawesome-team/capacitor-screen-orientation/compare/v2.0.0...v2.0.1) (2022-08-19)
+
+
+### Bug Fixes
+
+* **ios:** replace deprecated `statusBarOrientation` ([#24](https://github.com/capawesome-team/capacitor-screen-orientation/issues/24)) ([7405595](https://github.com/capawesome-team/capacitor-screen-orientation/commit/74055956d03707c087d411d039c247dbfc96daa0))
+
 ## [2.0.0](https://github.com/capawesome-team/capacitor-screen-orientation/compare/v1.1.7...v2.0.0) (2022-08-04)
 
 
