@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import Capacitor
 
 @objc public class ScreenOrientation: NSObject {
     static var supportedInterfaceOrientations = UIInterfaceOrientationMask.all
@@ -23,12 +24,13 @@ import UIKit
                 return
             }
             let currentOrientationValue = UIDevice.current.orientation.rawValue
+            let currentOrientationMask = strongSelf.convertOrientationValueToMask(currentOrientationValue)
             let nextOrientationMask = strongSelf.convertOrientationTypeToMask(orientationType)
             let nextOrientationValue = strongSelf.convertOrientationTypeToValue(orientationType)
-            UIDevice.current.setValue(nextOrientationValue, forKey: "orientation")
+            strongSelf.requestGeometryUpdate(orientationValue: nextOrientationValue, orientationMask: nextOrientationMask)
             ScreenOrientation.supportedInterfaceOrientations = nextOrientationMask
             UINavigationController.attemptRotationToDeviceOrientation()
-            UIDevice.current.setValue(currentOrientationValue, forKey: "orientation")
+            strongSelf.requestGeometryUpdate(orientationValue: currentOrientationValue, orientationMask: currentOrientationMask)
             strongSelf.notifyOrientationChangeListeners(orientationType)
             completion()
         }
@@ -52,6 +54,18 @@ import UIKit
             return
         }
         completion(cachedOrientationType)
+    }
+    
+    @objc private func requestGeometryUpdate(orientationValue: Int, orientationMask: UIInterfaceOrientationMask) {
+        if #available(iOS 16, *) {
+            let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+            windowScene?.keyWindow?.rootViewController?.setNeedsUpdateOfSupportedInterfaceOrientations()
+            windowScene?.requestGeometryUpdate(.iOS(interfaceOrientations: orientationMask)) { error in
+                CAPLog.print("requestGeometryUpdate failed.", error)
+            }
+        } else {
+            UIDevice.current.setValue(orientationValue, forKey: "orientation")
+        }
     }
 
     @objc private func getUncachedCurrentOrientationType(completion: @escaping (String) -> Void) {
@@ -83,6 +97,22 @@ import UIKit
     @objc private func notifyOrientationChangeListeners(_ orientationType: String) {
         self.currentOrientationType = orientationType
         self.plugin.notifyOrientationChangeListeners(orientationType)
+    }
+    
+    @objc private func convertOrientationValueToMask(_ orientationValue: Int) -> UIInterfaceOrientationMask {
+        switch orientationValue {
+        case UIInterfaceOrientation.landscapeLeft.rawValue:
+            return UIInterfaceOrientationMask.landscapeLeft
+        case UIInterfaceOrientation.landscapeRight.rawValue:
+            return UIInterfaceOrientationMask.landscapeRight
+        case UIInterfaceOrientation.portrait.rawValue:
+            return UIInterfaceOrientationMask.portrait
+        case UIInterfaceOrientation.portraitUpsideDown.rawValue:
+            return UIInterfaceOrientationMask.portraitUpsideDown
+        default:
+            let isPortrait = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation.isPortrait ?? false
+            return isPortrait ? UIInterfaceOrientationMask.portrait : UIInterfaceOrientationMask.landscapeLeft
+        }
     }
 
     @objc private func convertOrientationTypeToMask(_ orientationType: String) -> UIInterfaceOrientationMask {
@@ -134,16 +164,7 @@ import UIKit
         case UIInterfaceOrientation.portraitUpsideDown.rawValue:
             return "portrait-secondary"
         default:
-            var isPortrait = false
-            if #available(iOS 13.0, *) {
-              isPortrait = UIApplication.shared.windows
-                .first?
-                .windowScene?
-                .interfaceOrientation
-                .isPortrait ?? false
-            } else {
-              isPortrait = UIApplication.shared.statusBarOrientation.isPortrait
-            }
+            let isPortrait = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation.isPortrait ?? false
             return isPortrait ? "portrait-primary" : "landscape-primary"
         }
     }
