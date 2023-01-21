@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.2](https://github.com/capawesome-team/capacitor-screen-orientation/compare/v2.0.1...v2.0.2) (2023-01-21)
+
+
+### Bug Fixes
+
+* **ios:** `Setting UIDevice.orientation is not supported` error on iOS 16 ([#29](https://github.com/capawesome-team/capacitor-screen-orientation/issues/29)) ([879a3fd](https://github.com/capawesome-team/capacitor-screen-orientation/commit/879a3fdd50301371091ec8784a5906d9af0f5fee))
+
 ### [2.0.1](https://github.com/capawesome-team/capacitor-screen-orientation/compare/v2.0.0...v2.0.1) (2022-08-19)
 
 
